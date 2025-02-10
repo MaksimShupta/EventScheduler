@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-[#1E1E1E] border-b py-4 px-10">
+    <div className="navbar bg-[#1E1E1E] text-[#F5F5F5] border-b py-4 px-10">
       <div className="flex-1">
         <Link to="/">
           <img src="src/assets/logo-01.svg" alt="Logo" className="w-44" />
