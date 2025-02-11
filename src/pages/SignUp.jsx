@@ -12,7 +12,7 @@ const SignUp = () => {
     return (
         <div className="items-center flex flex-col  px-4 py-10">
             <h2 className="font-bold textLight text-3xl mb-10">
-                Welcome Back! Log in to your account
+                Let’s Make Some Events Happen – Sign Up!
             </h2>
             <div className="border border-light textLight rounded-xl w-full max-w-lg md:max-w-xl lg:max-w-2xl p-5 bg-bgLight space-y-6">
                 <form onSubmit={handleSubmit} className="space-y-8">
