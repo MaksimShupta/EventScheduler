@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .input-custom {
+        @apply bg-bgInput text-light input input-bordered flex items-center gap-2 placeholder-gray-400;
+    }
+}

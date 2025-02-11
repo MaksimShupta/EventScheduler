@@ -11,9 +11,14 @@ export default {
                 bgDark: "#1E1E1E", // Main dark background
                 bgLight: "#282828", // Slightly lighter dark background
                 light: "#F5F5F5", // Almost white for contrast
+                bgInput: "#353535",
             },
             fontFamily: {
                 sans: ["Inter", "sans-serif"], // Google Font "Inter"
+            },
+            backgroundImage: {
+                diagonal:
+                    "linear-gradient(135deg, rgba(51,191,204,1) 50%, rgba(40,40,40,1) 50%)",
             },
         },
     },
