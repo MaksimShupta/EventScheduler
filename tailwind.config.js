@@ -1,16 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 import daisyui from "daisyui";
+
 export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {
             colors: {
-                primary: "#33BFCC", // Turquoise
-                secondary: "#A47864", // Brown
-                accent: "#E3D5CA", // Light beige
+                primary: "#1E1E1E", // Main dark background
+                text: "#F5F5F5", // Almost white for contrast
+                accent: "#33BFCC", // Turquoise
+                brown1: "#9E7A67",
+                brown2: "#E3D5CA",
                 bgDark: "#1E1E1E", // Main dark background
                 bgLight: "#282828", // Slightly lighter dark background
-                light: "#F5F5F5", // Almost white for contrast
                 bgInput: "#353535",
             },
             fontFamily: {

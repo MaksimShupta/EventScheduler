@@ -4,6 +4,21 @@
 
 @layer components {
     .input-custom {
-        @apply bg-bgInput text-light input input-bordered flex items-center gap-2 placeholder-gray-400;
+        @apply bg-bgInput text-text input input-bordered flex items-center gap-2 placeholder-gray-400;
+    }
+    .btn-custom {
+        @apply text-text px-8 py-1 border rounded-full font-medium text-base;
+    }
+    .btn-primary {
+        @apply btn-custom border-accent;
+    }
+    .btn-primary:hover {
+        @apply bg-accent px-10;
+    }
+    .btn-secondary {
+        @apply btn-custom border-brown1;
+    }
+    .btn-secondary:hover {
+        @apply bg-brown1 px-10;
     }
 }
