@@ -2,7 +2,7 @@ import KeyIcon from "../assets/KeyIcon";
 import MailIcon from "../assets/MailIcon";
 import UserIcon from "../assets/UserIcon";
 import { Link } from "react-router";
-import { signUp, logIn } from "../data/authentication";
+import { signUp } from "../data/authentication";
 import { useState } from "react";
 
 const SignUp = () => {
