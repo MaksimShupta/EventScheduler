@@ -6,6 +6,9 @@
     .input-custom {
         @apply bg-bgInput text-text input input-bordered flex items-center gap-2 placeholder-gray-400;
     }
+    .textarea-custom {
+        @apply bg-bgInput text-text input input-bordered w-full p-3 h-40 rounded-lg resize-none placeholder-gray-400;
+    }
     .btn-custom {
         @apply text-text px-8 py-1 border rounded-full font-medium text-base;
     }
