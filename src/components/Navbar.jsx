@@ -16,16 +16,26 @@ const Navbar = () => {
             <div className="flex-none">
                 <ul className="flex items-center gap-8 text-[#F5F5F5] tracking-wider">
                     <li className="hover:text-[#61BDCA] underline decoration-[#1E1E1E] hover:underline-offset-8 hover:decoration-[#61BDCA] active:underline-offset-8 active:decoration-[#61BDCA]">
-                        <NavLink to="/">Home</NavLink>
-                    </li>
-                    <li className="hover:text-accent underline decoration-[#1E1E1E] hover:underline-offset-8 hover:decoration-[#61BDCA] active:underline-offset-8 active:decoration-[#61BDCA]">
                         <NavLink
-                            to="/my-events"
+                            to="/"
                             className={({ isActive }) =>
                                 isActive ? "text-accent" : "text-text"
                             }>
-                            My Events
+                            Home
                         </NavLink>
+                    </li>
+                    <li className="hover:text-accent underline decoration-[#1E1E1E] hover:underline-offset-8 hover:decoration-[#61BDCA] active:underline-offset-8 active:decoration-[#61BDCA]">
+                        {isAuthenticated() ? (
+                            <NavLink
+                                to="/my-events"
+                                className={({ isActive }) =>
+                                    isActive ? "text-accent" : "text-text"
+                                }>
+                                My Events
+                            </NavLink>
+                        ) : (
+                            ""
+                        )}
                     </li>
                     <li className="border border-[#61BDCA] py-2 px-8 rounded-badge hover:text-[#61BDCA]">
                         {isAuthenticated() ? (
