@@ -27,10 +27,10 @@ const signUp = async (
     }
     // Parse JSON response
     const data = await response.json();
-    console.log("You've successfully signed in !", data);
+    console.log("You've successfully signed up !", data);
     return data;
   } catch (error) {
-    console.error("Sign-in failed:", error);
+    console.error("Sign-up failed:", error);
   }
 };
 

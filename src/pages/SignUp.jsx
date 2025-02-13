@@ -23,7 +23,7 @@ const SignUp = () => {
       const storedUserData = localStorage.getItem("userData");
       if (storedUserData) {
         const parsedUserData = JSON.parse(storedUserData);
-        // Check if the new user data matches the stored data (email check or all fields)
+        // Check if the new user data matches the stored data
         if (
           parsedUserData.email === formData.email ||
           (parsedUserData.firstName === formData.firstName &&
