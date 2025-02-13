@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import AuthPage from "./pages/AuthPage";
 import SignUp from "./pages/SignUp";
 import MyEvents from "./pages/MyEvents";
+import { Navigate } from "react-router";
+import { isAuthenticated } from "./data/authentication";
 
 function App() {
     return (
@@ -14,7 +16,16 @@ function App() {
                     <Route path="sign-in" element={<AuthPage />} />
                     <Route path="sign-up" element={<SignUp />} />
                     <Route path="sign-up" element={<SignUp />} />
-                    <Route path="my-events" element={<MyEvents />} />
+                    <Route
+                        path="my-events"
+                        element={
+                            isAuthenticated() ? (
+                                <MyEvents />
+                            ) : (
+                                <Navigate to="/sign-in" />
+                            )
+                        }
+                    />
                     {/* <Route
                         path="your-events"
                         element={

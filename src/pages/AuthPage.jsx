@@ -17,9 +17,11 @@ const AuthPage = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        logIn();
+        navigate("/my-events");
 
         const filledOutField = Object.entries(formData).find(
-            ([key, value]) => !value
+            ([value]) => !value
         );
         if (filledOutField) {
             alert(`Please fill in the ${filledOutField[0]} field.`);
@@ -32,7 +34,7 @@ const AuthPage = () => {
             console.log("tmp:", tmp);
             const response = await logIn(formData.username, formData.password);
             console.log("Log-in response:", response);
-            navigate("/");
+            navigate(0);
             alert("You successfully logged in!");
         } catch (error) {
             console.error("Log-in failed!", error);
@@ -53,7 +55,7 @@ const AuthPage = () => {
                             name="username"
                             type="text"
                             className="grow"
-                            placeholder="Username"
+                            placeholder="Username (your email)"
                             value={formData.username}
                             onChange={handleChange}
                         />
