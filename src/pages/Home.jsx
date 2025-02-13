@@ -2,18 +2,24 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { getEvents } from "../data/events";
 import EventList from "../components/EventList";
+import { useNavigate } from "react-router";
+import { isAuthenticated } from "../data/authentication";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [events, setEvent] = useState([]);
 
   useEffect(() => {
+    if (!isAuthenticated()) {
+      navigate("/sign-in"); // Redirect to login if not authenticated
+    }
     (async () => {
       try {
         const allEvents = await getEvents();
         setEvent(allEvents);
         // console.log(allEvents);
       } catch (error) {
-        console.error(error);
+        console.error(error.message);
       }
     })();
   }, []);

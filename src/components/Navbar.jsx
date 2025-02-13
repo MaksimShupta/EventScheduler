@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router";
+import { isAuthenticated, logOut } from "../data/authentication";
 
 const Navbar = () => {
   return (
@@ -14,7 +15,11 @@ const Navbar = () => {
             <NavLink to="/">HOME</NavLink>
           </li>
           <li className="border border-[#61BDCA] py-2 px-8 rounded-badge hover:text-[#61BDCA]">
-            <NavLink to="/sign-in">LOG IN</NavLink>
+            {isAuthenticated() ? (
+              <button onClick={logOut}>LOG OUT</button>
+            ) : (
+              <NavLink to="/sign-in">LOG IN</NavLink>
+            )}
           </li>
         </ul>
       </div>

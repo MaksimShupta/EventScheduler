@@ -1,6 +1,6 @@
 import KeyIcon from "../assets/KeyIcon";
 import UserIcon from "../assets/UserIcon";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { logIn } from "../data/authentication";
 import { useState } from "react";
 
@@ -9,6 +9,7 @@ const AuthPage = () => {
     username: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -26,8 +27,12 @@ const AuthPage = () => {
     }
 
     try {
+      console.log("username:", formData.username);
+      const tmp = localStorage.getItem("users");
+      console.log("tmp:", tmp);
       const response = await logIn(formData.username, formData.password);
       console.log("Log-in response:", response);
+      navigate("/");
       alert("You successfully logged in!");
     } catch (error) {
       console.error("Log-in failed!", error);
