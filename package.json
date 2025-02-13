@@ -7,13 +7,16 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "json-server --watch db.json --port 3001"
   },
   "dependencies": {
+    "@fontsource/inter": "^5.1.1",
     "daisyui": "^4.12.23",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router": "^7.1.5"
+    "react-router": "^7.1.5",
+    "react-router-dom": "^7.1.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",

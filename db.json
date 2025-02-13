@@ -1,0 +1,25 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "title": "Music Festival",
+      "date": "2025-02-20",
+      "description": "A fun outdoor music festival with live bands.",
+      "location": "New York City"
+    },
+    {
+      "id": 2,
+      "title": "Tech Conference",
+      "date": "2025-03-10",
+      "description": "A gathering of the best minds in tech and innovation.",
+      "location": "San Francisco"
+    },
+    {
+      "id": 3,
+      "title": "Art Exhibition",
+      "date": "2025-04-05",
+      "description": "Showcasing contemporary artists from around the world.",
+      "location": "Los Angeles"
+    }
+  ]
+}
