@@ -1,6 +1,6 @@
 const getEvents = async () => {
   try {
-    const res = await fetch(`${window.location.origin}/api/events`);
+    const res = await fetch(`http://localhost:3001/api/events`);
     if (!res.ok) throw new Error(`${res.status}. Something went wrong!`);
 
     const data = await res.json();
