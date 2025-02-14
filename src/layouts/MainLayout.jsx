@@ -7,17 +7,21 @@ import { isAuthenticated, logOut } from "../data/authentication";
 
 const MainLayout = () => {
   const [authenticated, setAuthenticated] = useState(false);
+  const [allEvents, setAllEvents] = useState([]);
 
   useEffect(() => {
     setAuthenticated(isAuthenticated());
   }, []);
 
+  useEffect(() => {
+    const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
+    setAllEvents(storedEvents);
+  }, []);
 
   return (
     <div className="bg-[#1E1E1E] flex flex-col min-h-screen bg-diagonal">
       <Navbar />
       <main className="flex-grow flex flex-col justify-between py-4 px-24 text-[#F5F5F5] text-lg">
-
         {authenticated ? (
           <div>
             <p>Welcome back!</p>
@@ -33,8 +37,7 @@ const MainLayout = () => {
         ) : (
           <p>Please sign in.</p>
         )}
-
-        <Outlet />
+        <Outlet context={{ allEvents, setAllEvents, authenticated }} />
       </main>
       <Footer />
     </div>
