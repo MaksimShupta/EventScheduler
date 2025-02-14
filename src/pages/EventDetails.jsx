@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router";
 import { getEvents } from "../data/events"; // Adjust this if needed
+import { useOutletContext } from "react-router";
 
 const EventDetails = () => {
   const { eventId } = useParams();
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { allEvents } = useOutletContext();
 
   useEffect(() => {
     const fetchEvent = async () => {
       // Get all events from the function (e.g., from localStorage)
-      const events = getEvents();
+      const events = allEvents;
       console.log("Fetched events:", events);
       // Find the specific event based on eventId from URL
       const foundEvent = events.find((e) => e._id === eventId); // Use _id instead of id
