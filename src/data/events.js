@@ -1,14 +1,7 @@
-const getEvents = async () => {
-    try {
-        const res = await fetch(`${window.location.origin}/api/events`);
-        if (!res.ok) throw new Error(`${res.status}. Something went wrong!`);
-
-        const data = await res.json();
-        return data.results;
-    } catch (error) {
-        console.error("Fetch events error:", error.message);
-        return [];
-    }
+const getEvents = () => {
+  const events = JSON.parse(localStorage.getItem("events"));
+  console.log("Fetched events:", events); // Log events to check structure
+  return events || []; // Return empty array if no events
 };
 
 export { getEvents };

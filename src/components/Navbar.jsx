@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router";
+
 import { isAuthenticated, logOut } from "../data/authentication";
 
 const Navbar = () => {
@@ -48,6 +49,7 @@ const Navbar = () => {
             </div>
         </div>
     );
+
 };
 
 export default Navbar;

@@ -31,9 +31,9 @@ const EventCard = ({ event }) => {
         />
         <p className="text-sm">{description}</p>
       </div>
-      <Link key={id} to={`events/${id}`}>
-        <button className="border border-[#9E7A67] rounded-3xl px-4 py-2 text-sm">
-          View details
+      <Link to={`/event/${event._id}`}>
+        <button className="border border-[#9E7A67] rounded-3xl px-4 py-2 text-sm hover:bg-[#9E7A67] hover:text-[#282828] transition">
+          View Details
         </button>
       </Link>
     </div>

@@ -1,7 +1,9 @@
 import KeyIcon from "../assets/KeyIcon";
 import MailIcon from "../assets/MailIcon";
 import UserIcon from "../assets/UserIcon";
+
 import { Link, useNavigate } from "react-router";
+
 import { signUp } from "../data/authentication";
 import { useState } from "react";
 
@@ -13,11 +15,13 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
   });
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,11 +51,14 @@ const SignUp = () => {
       navigate("/");
     } else {
       alert(result.message);
+
     }
   };
 
   return (
+
     <div className="items-center flex flex-col px-4 py-10">
+
       <h2 className="font-bold textLight text-3xl mb-10">
         Let’s Make Some Events Happen – Sign Up!
       </h2>
@@ -114,6 +121,9 @@ const SignUp = () => {
               />
             </label>
           </div>
+
+
+
           <button className="btn-primary block mx-auto text-lg">
             Create Account
           </button>
