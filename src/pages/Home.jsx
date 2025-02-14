@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { getEvents } from "../data/events";
 import EventList from "../components/EventList";
 import { useOutletContext } from "react-router";
+import { isAuthenticated } from "../data/authentication";
 
 // import { useNavigate } from "react-router";
 // import { isAuthenticated } from "../data/authentication";
@@ -16,6 +17,8 @@ const Home = () => {
     // if (!isAuthenticated()) {
     //     navigate("/sign-in"); // Redirect to login if not authenticated
     // }
+    // setAuthenticated(isAuthenticated()); // Check if user is authenticated
+
     (async () => {
       try {
         const allApiEvents = await getEvents();
@@ -53,7 +56,7 @@ const Home = () => {
       <h1 className="text-3xl text-center font-bold tracking-wider my-16">
         Events
       </h1>
-      <EventList events={allEvents} />
+      <EventList events={authenticated ? allEvents : apiEvents} />
       <h2 className="text-2xl text-center font-bold tracking-wider my-16">
         How to create your own event
       </h2>
