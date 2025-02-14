@@ -13,7 +13,7 @@ const EventDetails = () => {
       const events = getEvents();
       console.log("Fetched events:", events);
       // Find the specific event based on eventId from URL
-      const foundEvent = events.find((e) => e._id === eventId); // Use _id instead of id
+      const foundEvent = events.find((e) => e.id === eventId); // Use _id instead of id
       console.log("eventId:", eventId); // Log the eventId
       console.log("foundEvent:", foundEvent); // Log the event found or undefined
       if (foundEvent) {
