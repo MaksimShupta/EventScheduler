@@ -6,9 +6,15 @@ import { isAuthenticated, logOut } from "../data/authentication";
 
 const MainLayout = () => {
   const [authenticated, setAuthenticated] = useState(false);
+  const [allEvents, setAllEvents] = useState([]);
 
   useEffect(() => {
     setAuthenticated(isAuthenticated());
+  }, []);
+
+  useEffect(() => {
+    const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
+    setAllEvents(storedEvents);
   }, []);
 
   return (
@@ -30,7 +36,7 @@ const MainLayout = () => {
         ) : (
           <p>Please sign in.</p>
         )}
-        <Outlet />
+        <Outlet context={{ allEvents, setAllEvents, authenticated }} />
       </main>
       <Footer />
     </div>
