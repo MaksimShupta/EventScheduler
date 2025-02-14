@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Outlet } from "react-router";
 import { useState, useEffect } from "react";
+
 import { isAuthenticated, logOut } from "../data/authentication";
 
 const MainLayout = () => {

@@ -1,10 +1,13 @@
 import KeyIcon from "../assets/KeyIcon";
 import UserIcon from "../assets/UserIcon";
+
 import { Link, useNavigate } from "react-router";
+
 import { logIn } from "../data/authentication";
 import { useState } from "react";
 
 const AuthPage = () => {
+
     const [formData, setFormData] = useState({
         username: "",
         password: "",
@@ -84,6 +87,7 @@ const AuthPage = () => {
             </div>
         </div>
     );
+
 };
 
 export default AuthPage;
