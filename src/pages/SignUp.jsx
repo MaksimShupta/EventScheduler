@@ -1,7 +1,9 @@
 import KeyIcon from "../assets/KeyIcon";
 import MailIcon from "../assets/MailIcon";
 import UserIcon from "../assets/UserIcon";
-import { Link } from "react-router";
+
+import { Link, useNavigate } from "react-router";
+
 import { signUp } from "../data/authentication";
 import { useState } from "react";
 
@@ -13,63 +15,50 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
   });
+
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    try {
-      e.preventDefault();
-      const storedUserData = localStorage.getItem("userData");
-      if (storedUserData) {
-        const parsedUserData = JSON.parse(storedUserData);
-        // Check if the new user data matches the stored data
-        if (
-          parsedUserData.email === formData.email ||
-          (parsedUserData.firstName === formData.firstName &&
-            parsedUserData.lastName === formData.lastName &&
-            parsedUserData.email === formData.email)
-        ) {
-          alert(
-            "An account with this information already exists. Please log in."
-          );
-          return;
-        }
-      }
-      //checking if all fields are filled out
-      console.log("form data: ", formData);
-      const filledOutField = Object.entries(formData).find(
-        ([key, value]) => !value
-      );
 
-      if (filledOutField) {
-        alert(`Please fill in the ${filledOutField[0]} field.`);
-        return;
-      }
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-      if (formData.password !== formData.confirmPassword) {
-        alert("Passwords do not match!");
-        return;
-      }
-      const response = await signUp(
-        formData.firstName,
-        formData.lastName,
-        formData.email,
-        formData.password,
-        formData.confirmPassword
-      );
+    // Check if all fields are filled
+    if (Object.values(formData).some((value) => !value)) {
+      alert("Please fill out all fields.");
+      return;
+    }
 
-      console.log("Sign-up response:", response.json());
-      localStorage.setItem("userData", JSON.stringify(formData));
+    // Check if passwords match
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    // Sign up the user
+    const result = signUp(
+      formData.firstName,
+      formData.lastName,
+      formData.email,
+      formData.password
+    );
+
+    if (result.success) {
       alert("Account created successfully!");
-    } catch (error) {
-      console.error("Sign-up failed!", error);
-      alert("Sign-up failed! Try again.");
+      navigate("/");
+    } else {
+      alert(result.message);
+
     }
   };
 
   return (
-    <div className="items-center flex flex-col  px-4 py-10">
+
+    <div className="items-center flex flex-col px-4 py-10">
+
       <h2 className="font-bold textLight text-3xl mb-10">
         Let’s Make Some Events Happen – Sign Up!
       </h2>
@@ -132,6 +121,8 @@ const SignUp = () => {
               />
             </label>
           </div>
+
+
 
           <button className="btn-primary block mx-auto text-lg">
             Create Account

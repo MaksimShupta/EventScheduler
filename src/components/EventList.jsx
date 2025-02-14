@@ -1,14 +1,10 @@
 import EventCard from "./EventCard";
 
 const EventList = ({ events }) => {
-  if (!events || events.length === 0) {
-    return <p className="text-center">No events available.</p>;
-  }
-
   return (
-    <section className="grid grid-cols-3 gap-8">
+    <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {events.map((event) => (
-        <EventCard key={event.id} event={event} />
+        <EventCard key={event._id} event={event} />
       ))}
     </section>
   );

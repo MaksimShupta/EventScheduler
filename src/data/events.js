@@ -1,9 +1,7 @@
-const getEvents = async () => {
-  const res = await fetch("http://localhost:3001/events");
-  if (!res.ok) throw new Error(`${res.status}. Something went wrong!`);
-
-  const data = await res.json();
-  return Array.isArray(data) ? data : []; // Just return the data directly
+const getEvents = () => {
+  const events = JSON.parse(localStorage.getItem("events"));
+  console.log("Fetched events:", events); // Log events to check structure
+  return events || []; // Return empty array if no events
 };
 
 export { getEvents };

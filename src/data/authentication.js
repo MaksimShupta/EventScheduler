@@ -1,56 +1,69 @@
-// getting automatically the localhost
-const signIn_url = `${window.location.origin}/sign-in`;
-const signUp_url = `${window.location.origin}/sign-up`;
 
-const signUp = async (
-  firstname,
-  lastname,
-  email,
-  password,
-  confirmPassword
-) => {
-  try {
-    console.log("sign up url: ", signUp_url);
-    const response = await fetch(`${signUp_url}`, {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify({
-        firstname,
-        lastname,
-        email,
-        password,
-        confirmPassword,
-      }),
-    });
-    if (!response.ok) {
-      throw new Error(`Error: ${response.status} ${response.statusText}`);
+const USERS_KEY = "users";
+const SESSION_KEY = "currentUser";
+
+// Get users
+const getUsers = () => JSON.parse(localStorage.getItem(USERS_KEY)) || [];
+
+const saveUsers = (users) =>
+    localStorage.setItem(USERS_KEY, JSON.stringify(users));
+
+// Sign up function (registers a new user)
+const signUp = (firstname, lastname, email, password) => {
+    let users = getUsers();
+
+    // Check if email is already registered
+    if (users.some((user) => user.email === email)) {
+        console.error("Email is already in use!");
+        return { success: false, message: "Email is already registered" };
     }
-    // Parse JSON response
-    const data = await response.json();
-    console.log("You've successfully signed up !", data);
-    return data;
-  } catch (error) {
-    console.error("Sign-up failed:", error);
-  }
+
+    // Add new user
+    users.push({ firstname, lastname, email, password });
+    saveUsers(users);
+
+    console.log("User registered successfully!");
+    return { success: true };
 };
 
-const logIn = async (username, password) => {
-  try {
-    const response = await fetch(`${signIn_url}`, {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
-    if (!response.ok) {
-      throw new Error(`Error: ${response.status} ${response.statusText}`);
+const logIn = (email, password) => {
+    // Sicherstellen, dass email und password existieren
+    if (!email || !password) {
+        console.error("Email and password must be provided!");
+        return { success: false, message: "Please enter email and password." };
     }
-    // Parse JSON response
-    const data = await response.json();
-    console.log("You've successfully logged in !", data);
-    return data;
-  } catch (error) {
-    console.error("Log-in failed:", error);
-  }
+
+    let users = getUsers();
+    console.log("Users from localStorage:", JSON.stringify(users, null, 2));
+
+    // Find user, aber mit optional chaining `?.trim()` um Fehler zu vermeiden
+    const user = users.find(
+        (u) =>
+            u.email?.trim() === email?.trim() &&
+            u.password?.trim() === password?.trim()
+    );
+
+    if (!user) {
+        console.error("Invalid email or password");
+        return { success: false, message: "Invalid credentials" };
+    }
+
+    // Save current session
+    localStorage.setItem(SESSION_KEY, JSON.stringify(user));
+    console.log("You've successfully logged in!");
+    return { success: true, user };
 };
 
-export { logIn, signUp };
+// Check if a user is authenticated
+const isAuthenticated = () => {
+    return !!localStorage.getItem(SESSION_KEY);
+};
+
+// Logout function (clears session)
+const logOut = () => {
+    localStorage.removeItem(SESSION_KEY);
+    window.location.reload();
+    console.log("You've logged out.");
+};
+
+export { signUp, logIn, isAuthenticated, logOut };
